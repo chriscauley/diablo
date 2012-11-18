@@ -49,12 +49,10 @@ class Account(APIModel):
 
     def update_artisans(self):
         for json in self.toon['artisans']:
-            print "updating art",self
             slug = json.pop('slug')
             d = dict(slug=slug,account=self,hardcore=False,defaults=json)
             Artisan.objects.get_or_create(**d)
         for json in self.toon['hardcoreArtisans']:
-            print "updating hard",self
             slug = json.pop('slug')
             d = dict(slug=slug,account=self,hardcore=True,defaults=json)
             Artisan.objects.get_or_create(**d)

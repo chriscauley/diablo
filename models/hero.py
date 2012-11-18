@@ -73,7 +73,6 @@ class Hero(APIModel):
             follower = Follower.objects.lazy_from_kwargs(hero=self,**json)
             follower.items = [Item.objects.lazy_from_kwargs(slot=s,**j) for s,j in items.items()]
             follower.skills = [Skill.objects.lazy_from_kwargs(**j['skill']) for j in skills if 'skill' in j]
-            print follower.skills.all()
             follower.save()
     def update_stats(self):
         json = self.toon['stats']

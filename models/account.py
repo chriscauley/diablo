@@ -16,7 +16,7 @@ class Account(APIModel):
     name = models.CharField(max_length=64)
     user = models.ForeignKey(User,null=True,blank=True,related_name='diablo_accounts')
     region = models.ForeignKey(Region)
-    code = models.IntegerField()
+    code = models.IntegerField("Battle Tag")
 
     lastHeroPlayed = models.IntegerField(default=0)
     lastUpdated = models.IntegerField(default=0)

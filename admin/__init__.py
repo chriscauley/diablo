@@ -20,6 +20,7 @@ class AccountAdmin(admin.ModelAdmin):
 class ItemAdmin(admin.ModelAdmin):
     readonly_fields = ('attributes','gems')
 
+admin.site.register(Region)
 admin.site.register(Account,AccountAdmin)
 admin.site.register(Hero,HeroAdmin)
 admin.site.register(Item,ItemAdmin)

@@ -10,7 +10,7 @@ class Hero(APIModel):
     klass = models.CharField(max_length=32,choices=var.KLASS_CHOICES)
     level = models.IntegerField(default=0)
     gender = models.IntegerField(choices=var.GENDER_CHOICES)
-    lastUpdated = models.IntegerField(default=0)
+    last_updated = models.DateTimeField(auto_now=True)
     dead = models.BooleanField(default=False)
     hardcore = models.BooleanField(default=False)
 
@@ -89,23 +89,25 @@ class Hero(APIModel):
         from .item import Attribute
         # get all attributes an gem attributes
         totals = Attribute.objects.filter(models.Q(item__hero=self)|models.Q(gem__item__hero=self))
-        # We'll need format for printing, type for selecting and primary elevate/ignore
-        totals = totals.values('type__string_format','type','type__primary')
+        # We'll need format for printing and type for selecting (via javascript)
+        totals = totals.values('type__string_format','type')
         #finally grab everything
         totals = [t for t in totals.annotate(models.Sum('value')) if t['value__sum']]
 
         #this is really hacky, I hardcoded these from the database
-        primary_type = var.KLASS_PRIMARIES[self.klass]
-        
-        primary_total = [t for t in totals if t['type__primary'] and t['type'] == primary_type]
-        secondary_totals = [t for t in totals if not t['type__primary']]
-        totals = primary_total + secondary_totals
+        ordered_totals = []
         for t in totals:
+            if not t['type__string_format'] in var.KLASS_PRIMARIES.values():
+                ordered_totals.append(t)
+            if t['type__string_format'] == var.KLASS_PRIMARIES[self.klass]:
+                ordered_totals.insert(0,t)
+
+        for t in ordered_totals:
             if "+" in t['type__string_format']:
                 t['type__string_format'] = t['type__string_format'].replace("+","")
                 t['value__sum'] = "+%s"%t['value__sum']
             t['html'] = t['type__string_format'].replace('#','<span class="value">%s</span>'%t['value__sum'])
-        return totals
+        return ordered_totals
 
     def get_resources(self):
         resources = var.KLASS_RESOURCES[self.klass]

@@ -3,7 +3,7 @@
     <div class="gear-bonuses">
       <div class="category">Gear Bonuses</div>
       <ul>
-        {% for bonus in hero.gear_bonuses|slice:":6" %}
+        {% for bonus in hero.gear_bonuses|slice:":7" %}
         <li>
           <a href="javascript:;" onclick="showBonuses(this,{{ bonus.type }}); return false;"
              class="bonus-stat" data-bonus-index="46">

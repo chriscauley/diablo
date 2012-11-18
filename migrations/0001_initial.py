@@ -79,7 +79,7 @@ class Migration(SchemaMigration):
             ('klass', self.gf('django.db.models.fields.CharField')(max_length=32)),
             ('level', self.gf('django.db.models.fields.IntegerField')(default=0)),
             ('gender', self.gf('django.db.models.fields.IntegerField')()),
-            ('lastUpdated', self.gf('django.db.models.fields.IntegerField')(default=0)),
+            ('last_updated', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('dead', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('hardcore', self.gf('django.db.models.fields.BooleanField')(default=False)),
             ('elite_kills', self.gf('django.db.models.fields.IntegerField')(default=0)),
@@ -283,8 +283,6 @@ class Migration(SchemaMigration):
         db.create_table('diablo_attributetype', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('string_format', self.gf('django.db.models.fields.CharField')(max_length=128, null=True, blank=True)),
-            ('classifier', self.gf('django.db.models.fields.CharField')(unique=True, max_length=128)),
-            ('primary', self.gf('django.db.models.fields.BooleanField')(default=False)),
         ))
         db.send_create_signal('diablo', ['AttributeType'])
 
@@ -556,9 +554,7 @@ class Migration(SchemaMigration):
         },
         'diablo.attributetype': {
             'Meta': {'object_name': 'AttributeType'},
-            'classifier': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '128'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'primary': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'string_format': ('django.db.models.fields.CharField', [], {'max_length': '128', 'null': 'True', 'blank': 'True'})
         },
         'diablo.follower': {
@@ -590,7 +586,7 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'items': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': "orm['diablo.Item']", 'null': 'True', 'blank': 'True'}),
             'klass': ('django.db.models.fields.CharField', [], {'max_length': '32'}),
-            'lastUpdated': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
+            'last_updated': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'level': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '64'})
         },

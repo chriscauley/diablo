@@ -7,11 +7,11 @@ KLASS_CHOICES = (
     )
 
 KLASS_PRIMARIES = {
-    'barbarian': 'Barbarian',
-    'witch-doctor': 'Witch Doctor',
-    'demon-hunter': 'Demon Hunter',
-    'wizard': 'Wizard',
-    'monk': 'Monk',
+    'barbarian': '+# Strength',
+    'witch-doctor': '+# Intelligence',
+    'demon-hunter': '+# Dexterity',
+    'wizard': '+# Intelligence',
+    'monk': '+# Dexterity',
   }
 
 KLASS_RESOURCES = {

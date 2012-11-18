@@ -7,6 +7,7 @@ from .abstract import APIModel, _Meta, ModelManager, Model
 class Region(Model):
     name = models.CharField(max_length=16)
     code = models.CharField(max_length=4)
+    __unicode__ = lambda self: self.name
     class Meta(_Meta):
         pass
 

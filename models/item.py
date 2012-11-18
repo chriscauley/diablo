@@ -7,12 +7,10 @@ import re
 
 class AttributeType(models.Model):
     string_format = models.CharField(null=True,blank=True,max_length=128)
-    classifier = models.CharField(max_length=128,unique=True)
-    primary = models.BooleanField(default=False)
-    __unicode__ = lambda self: self.classifier
+    __unicode__ = lambda self: self.string_format
     def save(self,*args,**kwargs):
         if not self.string_format:
-            self.string_format = self.classifier
+            self.string_format = self.string_format
         super(AttributeType,self).save(*args,**kwargs)
     class Meta(_Meta):
         pass
@@ -21,13 +19,14 @@ class AttributeManager(models.Manager):
     def get_or_create(self,string=None,*args,**kwargs):
         if not string:
             return super(AttributeManager,self).get_or_create(**kwargs)
-        string = string.replace(u'u\2013','-')
+        string = string.replace(u'\u2013','-')
         matches = re.findall("\d+",string)
         if matches:
             value = sum([float(i) for i in matches])/len(matches)
         else:
             value = 0
-        attribute_type,new = AttributeType.objects.get_or_create(classifier=re.sub("\d+","#",string))
+        string_format = re.sub("\d+","#",string).replace("#-#",'#')
+        attribute_type,new = AttributeType.objects.get_or_create(string_format = string_format)
         if new:
             pass #print "AttributeType created: %s"%attribute_type
         kwargs.update({'value':value,'type':attribute_type,'text':string})

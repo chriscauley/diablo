@@ -1,0 +1,30 @@
+<div class="attributes">
+  <div class="attributes-core">
+    <div class="header category">attributes</div>
+    <ul class="attrs">
+      {% for name, value in hero.stats.attributes %}
+      <li class="tip">
+	<span class="label">{{ name }}</span>
+	<span class="value">{{ value }}</span>
+        <div style="clear: both;"></div>
+      </li>
+      {% endfor %}
+    </ul>
+    <ul class="resources">
+      <li class="resource tip" data-tooltip="#tooltip-maxPrimaryResource-hero">
+        <span class="resource-icon resource-{{ hero.get_resources.slug }}">
+          <span class="value">{{ hero.get_resources.html|safe }}</span>
+        </span>
+        <span class="label-wrapper">
+          <span class="label">{{ hero.get_resources.name }}</span>
+        </span>
+      </li>
+      <li class="resource tip" data-tooltip="#tooltip-life-hero">
+        <span class="resource-icon resource-life">
+          <span class="value">{{ hero.display_vitality }}</span>
+        </span>
+        <span class="label-wrapper"><span class="label">Life</span></span>
+      </li>
+    </ul>
+  </div>
+</div>

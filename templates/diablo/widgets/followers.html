@@ -1,0 +1,18 @@
+<div class="page-section profile-followers">
+  <div class="section-header ">
+    <div class="category ">Followers</div>
+  </div>
+  <div class="section-body">
+    <a href="/d3/en/calculator/follower#.000!....!0100" class="profile-link">
+      View in Skill Calculator
+      <span class="icon-frame icon-frame-text">
+        <span class="icon-16 icon-16-rarrow"></span>
+      </span>
+    </a>
+    <div class="followers">
+      {% for follower in hero.follower_set.all %}
+      {% include "diablo/widgets/follower.html" %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

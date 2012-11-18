@@ -1,0 +1,105 @@
+<div id="hero-{{ hero.pk }}">
+  <div class="hero_profile" style='background:url("http://us.battle.net/d3/static/images/profile/hero/paperdoll/{{ hero.klass }}-{{ hero.get_gender_display|lower }}.jpg")'>
+    <div class="gear-bonuses">
+      <div class="category">Gear Bonuses</div>
+      <ul>
+        {% for bonus in hero.gear_bonuses|slice:":6" %}
+        <li>
+          <a href="javascript:;" onclick="showBonuses(this,{{ bonus.type }}); return false;"
+             class="bonus-stat" data-bonus-index="46">
+            <span class="bonus-radio"></span><p>{{ bonus.html|safe }}</p>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="name">{{ hero.level }} {{ hero.get_klass_display }}</div>
+    <ul class="gear-labels">
+      {% for item in hero.items.all %}
+      <li class="gear-label {{ item.slot }}">
+        <a href="" class="label-link color-{{ item.displayColor }}">
+          <span class="item-name">{{ item.name }}</span>
+          {% for attribute in item.full_attributes %}
+          <div class="bonus-value long-bonus bonus-type-{{ attribute.type_id }}">{{ attribute }}</div>
+          {% endfor %}
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    <ul class="gear-lines">
+      {% for item in hero.items.all %}
+      <li class="{{ item.slot }}"></li>
+      {% endfor %}
+    </ul>
+    <ul class="gear_slots">
+      {% for item in hero.items.all %}
+      <li class="item {{ item.slot }} {{ item.displayColor }}">
+        <a class="slot-link" href="http://us.battle.net/d3/en/{{ item.tooltipParams }}"
+	   data-d3tooltip="{{ item.tooltipParams }}" style="cursor:pointer;">
+          <span class="extra"></span>
+          <img src="{{ item.icon_url }}" class="icon" />
+          <span class="socket-wrapper">
+            <span class="socket-align">
+              {% for gem in item.gems.all %}
+              <span class="socket">
+                <img class="socket" src="{{ gem.icon_url }}" />
+              </span>
+              {% endfor %}
+            </span>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="lower">
+    <div class="stats-wrapper">
+      <div class="attributes">
+        <div class="attributes-core">
+          <div class="header category">attributes</div>
+          <ul>
+            {% for name, value in hero.stats.attributes %}
+            <li class="tip">
+	      <span class="label">{{ name }}</span>
+	      <span class="value">{{ value }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      
+      <div class="skills">
+        <div class="header category">skills</div>
+        <ul class="active">
+          {% for rune in hero.skillset.runes.all %}
+          <li>
+	    <a href="{{ rune.skill.tooltip_url }}" data-d3tooltip="{{ rune.skill.tooltip_url }}">
+	      <img src="{{ rune.skill.icon_url }}" />
+	      <span class="skill-name">
+	        <b>{{ rune.skill.name }}</b>
+	        <br />
+	        {{ rune.name|default_if_none:"" }}
+	      </span>
+	    </a>
+          </li>
+          {% endfor %}
+        </ul>
+        <ul class="passive">
+          {% for skill in hero.skillset.passive_skills.all %}
+          <li>
+	    <a href="">
+	      <img src="{{ skill.icon_url }}" width="32" />
+	      <span class="skill-name">
+	        <b>{{ skill.name }}</b>
+	      </span>
+	    </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div style="clear: both;"></div>
+    </div>
+    {% include "diablo/widgets/progress.html" %}
+    {% include "diablo/widgets/followers.html" %}
+  </div>
+</div>

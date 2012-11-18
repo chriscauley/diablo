@@ -1,0 +1,43 @@
+#diablo_armory .page-section.skills {
+  float: right; width: 546px; position: relative; margin: 0;
+  .tip { border:0 }
+  .d3-icon-skill,
+  .d3-icon-trait { vertical-align: middle; margin-right: 3px; }
+  .d3-icon-skill { box-shadow: 0 0 5px rgba(0,0,0,0.5); }
+  .skill-name { display: inline-block; vertical-align: middle; color: #f3e6d0; margin-top:-2px; margin-left:5px }
+  .skill-name .rune-name { display: block; color: #796d55; font-size:11px; margin-top:-1px }
+  a:hover .skill-name { color: #fff; }
+  a { display: block; font-size: 12px; }
+  a.profile-link { font-size:11px; }
+  .profile-lower .section-body a.profile-link .icon-frame-text {margin-right:0px;}
+
+  .passive-skills { padding:0 0 0 10px }
+  .passive-skills li { float:left; width:33% }
+  .passive-skills a { height:41px;  }
+  .passive-skills .skill-name { width:110px; margin-top:-1px; line-height:16px; }
+  .passive-skills .passive-icon { background:url(../../images/profile/hero/passive-skills.png) 0 -41px no-repeat; display:inline-block; width:31px; height:31px; padding:5px; vertical-align:middle }
+  .passive-skills a:hover .passive-icon { background-position:-41px -41px }
+  .passive-skills .empty-passive,
+  .passive-skills a:hover .empty-passive { display:block; background-position: -82px -41px }
+  .passive-skills .frame { }
+  .passive-skills .locked-passive-10 { background-position:0 0 }
+  .passive-skills .locked-passive-20 { background-position:-41px 0 }
+  .passive-skills .locked-passive-30 { background-position:-82px 0 }
+
+  .active-skills { height:163px; padding:16px 0 17px; border-bottom:1px solid #252018; margin-bottom:17px }
+  .active-skills li { float: left; width:247px; padding:2px 0 0 12px; margin: 0 0 10px 0; position: relative; }
+  .active-skills .empty-skill { width:42px; height:42px; display:block; display:inline-block; background:url(../../images/profile/hero/skill-overlays.png) -47px 0 }
+  .active-skills .empty-skill.unlocked { background-position:-131px -42px }
+  .active-skills .empty-skill.locked-2 { background-position:-47px 0 }
+  .active-skills .empty-skill.locked-4 { background-position:-89px 0 }
+  .active-skills .empty-skill.locked-9 { background-position:-131px 0 }
+  .active-skills .empty-skill.locked-14 { background-position:-47px -42px }
+  .active-skills .empty-skill.locked-19 { background-position:-89px -42px }
+  .active-skills .slot { display:block; width:22px; height:22px; background: url("../../images/profile/hero/skill-overlays.png") 0 0; position: absolute; top:-1px; left:-1px; }
+  .active-skills .slot.slot-primary { background-position:0 -1px }
+  .active-skills .slot.slot-secondary { background-position: -21px -1px }
+  .active-skills .slot.slot-1 { background-position:0 -23px; }
+  .active-skills .slot.slot-2 { background-position:-23px -23px }
+  .active-skills .slot.slot-3 { background-position:0 -46px }
+  .active-skills .slot.slot-4 { background-position:-23px -46px }
+}

@@ -1,0 +1,79 @@
+#diablo_wrapper {
+  background: black;
+  margin: 0 auto;
+  text-shadow: 1px 1px 0 black;
+  width: 994px;
+  a { text-decoration: none; }
+  .category {
+    border-bottom: 2px solid #312A1E;
+    font: normal 16px "Palatino Linotype", "Times", serif;
+    padding-bottom: 7px;
+    text-transform: uppercase;
+  }
+}
+
+#diablo_armory .hero_profile {
+  backgroud-repeat: no-repeat;
+  height: 645px;
+  position: relative;
+  width:  994px;
+  .name {
+    font-size: 48px;
+    color: #FFEAD4;
+    text-transform: uppercase;
+    line-height: 47px;
+    top: 68px;
+  }
+  .name {
+    font: normal 46px/100% "Palatino Linotype", "Times", serif;
+    width: 700px;
+    position: absolute;
+    top: 69px;
+    right: 15px;
+    text-align: center;
+    line-height: 100%;
+    text-shadow: none;
+  }
+}
+
+#diablo_armory .lower {
+  color: #F3E6D0;
+  background: url("http://us.battle.net/d3/static/images/profile/hero/lower-bg.jpg") 50% 0 no-repeat;
+}
+
+#diablo_armory .stats-wrapper {
+  padding: 58px 68px 73px;
+}
+
+#diablo_armory .page-section {
+  margin: 0 42px 30px;
+}
+
+#diablo_armory .color- {
+  &yellow { color: #ffff00 !important; }
+  &orange { color: #fba412 !important; }
+  &blue { color: #a0c3ff !important; }
+  &green { color: #a4df44 !important; }
+  &gray { color: #c1c1c1 !important; }
+}
+
+.gear-bonuses {
+  width: 225px; position: absolute; left: 30px; top: 386px; 
+  .tip { border:0 }
+  p { margin:0; padding-top:0px; line-height:15px;}
+  .help-icon {display:block; float:left; margin-right:3px; width: 25px; height: 25px; vertical-align: middle; background: url(http://us.battle.net/d3/static/images/profile/hero/help-icon.png) 0 0 no-repeat; font-size: 1px; position:relative; left:-2px;}
+  .category { width:290px; color:#ffe8ce; background:url(http://us.battle.net/d3/static/images/profile/hero/gear-bonus-divider.png) 0 100% no-repeat; padding-bottom:5px }
+  ul { margin: 15px 0; padding-left:8px }
+  li { padding:0; /*min-height:24px;*/ margin-top:11px; }
+  li a { font-size: 12px; /*opacity: .75;*/ display:block; color:#a99fff; padding-left:20px }
+  li a:hover, li a:hover .value { color:#FFF }
+  li a .value { color:#d0ccff; }
+  li:first-child { margin-top:0; margin-bottom:-1px; }
+  li:first-child a { font-size: 16px; opacity: 1; }
+  li:first-child p { padding-top:0; line-height:20px; }
+  .view-more { font-style: italic; color: #948474; padding-left:30px }
+  .view-more:hover { color: #7B6D55; }
+  .bonus-radio { display:block; float:left; width:23px; height:23px; background:url(http://us.battle.net/d3/static/images/profile/hero/gear-bonus-radio.png) no-repeat -24px 0; margin-left:-29px; position:relative; top:-2px; }
+  li:first-child .bonus-radio {top:1px;}
+  .active .bonus-radio { background-position: 0 0 }
+}

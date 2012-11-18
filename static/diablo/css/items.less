@@ -1,0 +1,197 @@
+#diablo_armory .gear_slots {
+  height: 425px;
+  position: absolute;
+  right: 215px;
+  top: 155px;
+  width: 305px;
+  z-index: 3;
+  .slot-link {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+  .item {
+    overflow: visible;
+    position: absolute;
+    text-align: center;
+    .extra {
+      border: 1px solid black;
+      border-radius: 4px;
+      box-sizing: border-box;
+      display: block;
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+    &.yellow .extra {
+      border-color: #B1A73C;
+      background: url("http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png") #322914;
+    }
+    &.white .extra {
+      border-color: #56402C;
+      background: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png") #2A2017;
+    }
+    &.blue .extra {
+      border-color: #6BA9BA;
+      background: url("http://us.battle.net/d3/static/images/item/icon-bgs/blue.png") #232227;
+    }
+    &.green .extra {
+      border-color: #87A73D;
+      background: url("http://us.battle.net/d3/static/images/item/icon-bgs/green.png") #262F14;
+    }
+    &.orange .extra {
+      border-color: #C29337;
+      background: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png") #332314;
+    }
+    .icon {
+      position: relative;
+    }
+    .extra {
+      width: 100%;
+      height: 100%;
+      &:before,&:after {
+	content: "";
+	display: block;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+      }
+      &:after {
+	box-shadow: 0 0 9px rgba(0, 0, 0, 0.09), 0 2px 5px rgba(0, 0, 0, 0.5);
+      }
+      &:before {
+	border-radius: 4px;
+	background-image: url("../images/item/icon-bgs/gradient.png");
+	background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.45), transparent);
+	background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.45), transparent);
+	background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.45), transparent);
+	background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.45), transparent);
+	background-image: linear-gradient(top, rgba(0, 0, 0, 0.45), transparent);
+      }
+    }
+  }
+  .head { top: 4px; left: 121px; }
+  .torso { top: 74px; left: 113px; }
+  .feet { bottom: 14px; left: 121px; }
+  .hands { top: 127px; left: 13px; }
+  .shoulders { top: 28px; left: 39px; }
+  .legs { bottom: 106px; left: 121px; }
+  .bracers { top: 127px; right: 10px; }
+  .mainHand { bottom: 13px; left: 13px; }
+  .offHand { right: 10px; bottom: 13px; }
+  .waist { top: 193px; left: 113px; }
+  .rightFinger { right: 22px; bottom: 156px; }
+  .leftFinger { bottom: 156px; left: 25px; }
+  .neck { top: 48px; right: 44px; }
+
+  .head, .head .socket-align {
+    height: 66px; width: 66px;
+    .icon { top: -31px; }
+  }
+  .torso, .torso .socket-align {
+    height: 115px; width: 82px;
+    .icon { top: -25px; left: -1px; }
+  }
+  .feet, .hands, .shoulders, .legs, .bracers {
+    height: 88px; width: 66px;
+    .socket-align { height: 88px; width: 66px; }
+    .icon { top: -20px; }
+  }
+  .mainHand, .offHand {
+     height: 130px; width: 66px;
+    .socket-align { height: 130px; width: 66px; }
+  }
+  .waist, .waist .socket-align {
+    height: 34px; width: 82px;
+    .socket-align { height: 34px; width: 82px; }
+    .icon { top: -15px; }
+  }
+  .rightFinger, .leftFinger {
+    height: 42px; width: 42px;
+    .socket-align { height: 42px; width: 42px; }
+    .icon { top: -12px; left: -12px; }
+  }
+  .neck, .neck .socket-align {
+    height: 56px; width: 56px;
+    .icon { top: 1px; width: 52px; }
+  }
+}
+
+#diablo_armory .socket-wrapper {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  .socket-align {
+    display: table-cell;
+    height: 100%;
+    vertical-align: middle;
+    width: 100%;
+  }
+  .socket {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+    background: url(http://us.battle.net/d3/static/images/profile/hero/skill-overlays.png) 0 -71px no-repeat;
+    text-align: center;
+    position: relative;
+    left: 1px;
+  }
+}
+
+#diablo_armory .gear-labels {
+  width: 726px; min-height: 490px; position: absolute; top: 156px; right: 2px; z-index: 2;
+  .gear-label { position: absolute; width: 186px; font-size: 11px; }
+  .gear-label .label-link { display: block; text-decoration: none; }
+  .gear-label .item-name { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:186px; display:block; }
+  .bonus-value, .weapon-dps { display:block; color:#c4b9a7; font-size:14px; text-shadow:1px 1px 0 #000; position:relative;}
+  .weapon-dps { color:#c6aa75; font-size:11px; margin-bottom:-4px; top:-2px;}
+  .weapon-dps .value { font-size:16px; }
+  .bonus-value.long-bonus { font-size:11px; line-height:12px; top:2px; display: none; }
+  .bonus-value p { margin:0; }
+  .bonus-value p .value { font-size:14px; color:#d7cbb7; }
+  .head, .neck, .bracers, .waist, .feet, .rightFinger, .offHand { right: 0; }
+  .shoulders, .torso, .hands, .legs, .leftFinger, .mainHand { text-align: right; left: 0; }
+  .head { top: 6px; }
+  .neck { top: 75px; }
+  .bracers { top: 144px; }
+  .waist { top: 213px; }
+  .rightFinger { top: 274px; }
+  .offHand { top: 340px; }
+  .feet { top: 423px; }
+  .shoulders { top: 30px; }
+  .torso { top: 99px; }
+  .hands { top: 168px; }
+  .leftFinger { top: 237px; }
+  .legs { top: 301px; }
+  .mainHand { top: 376px; }
+  .item-effects { margin-top:0; font-size:11px }
+  .item-effects li { white-space:nowrap }
+  .item-effects li.full-socket { padding-top:0 }
+  .item-effects li .gem { float:none; display:inline-block; margin-bottom:-4px }
+  .item-effects li .socket-effect { background:none; padding-left:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:150px }
+}
+
+#diablo_armory .gear-lines {
+  width: 332px; height: 418px; position: absolute; top: 169px; right: 200px; z-index: 1;
+  li { position: absolute; background: url("http://us.battle.net/d3/static/images/profile/hero/inventory-lines.png"); }
+  .head { width: 134px; height: 1px; top: 0; right: 0; background-position: 100% 0; }
+  .waist { width: 124px; height: 12px; top: 196px; right: 0; background-position: 100% -196px; }
+  .torso { width: 125px; height: 24px; top: 84px; left: 0; background-position: 0 -84px; }
+  .shoulders { width: 51px; height: 1px; top: 24px; left: 0; background-position: 0 -24px; }
+  .neck { width: 59px; height: 1px; top: 69px; right: 0; background-position: 100% -69px; }
+  .leftFinger { width: 37px; height: 1px; top: 231px; left: 0; background-position: 0 -231px; }
+  .rightFinger { width: 37px; height: 28px; top: 241px; right: 0; background-position: 100% -241px; }
+  .hands { width: 25px; height: 1px; top: 162px; left: 0; background-position: 0 -162px; }
+  .bracers { width: 25px; height: 1px; top: 138px; right: 0; background-position: 100% -138px; }
+  .legs { width: 133px; height: 35px; top: 261px; left: 0; background-position: 0 -261px; }
+  .feet { width: 166px; height: 21px; bottom: 0; right: 0; background-position: 100% 100%; }
+  .mainHand { width: 25px; height: 1px; top: 370px; left: 0; background-position: 0 -370px; }
+  .offHand { width: 25px; height: 1px; top: 334px; right: 0; background-position: 100% -334px; }
+}

@@ -1,0 +1,74 @@
+{% extends "shop/base.html" %}
+{% load compress %}
+{% load url from future %}
+
+{% block head %}
+{% compress css %}
+<link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/items.less" />
+<link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/skills.less" />
+<link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/attributes.less" />
+<link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/nav.less" />
+<link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/armory.less" />
+<link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/progress.less" />
+<link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/follower.less" />
+{% endcompress %}
+<script src="http://us.battle.net/d3/static/js/tooltips.js"></script>
+<script type="text/javascript">
+function loadHero(that,pk) {
+  $(".hero-tab").removeClass("active").removeClass("loading");
+  if (!!$("#hero-"+pk).length) {
+    showTab(pk);
+    $(that).removeClass("loading").addClass("active");
+    return;
+  }
+  $(that).addClass("loading");
+  $.get(
+    "/diablo/hero/"+pk+"/",
+    function (data) {
+      $("#diablo_armory").append($(data));
+      showTab(pk)
+      $(that).removeClass("loading").addClass("active");
+    },
+    "html"
+  )
+}
+function showTab(pk) {
+  $("#diablo_armory").children().hide();
+  $("#hero-"+pk).show();
+}
+function showBonuses(that,pk) {
+  $(".bonus-stat.active").removeClass("active");
+  $(that).addClass("active");
+  $(".bonus-value").hide();
+  $(".bonus-type-"+pk).show();
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div id="diablo_wrapper">
+  <div style="padding: 7px 12px 0;">
+    <ul id="hero_menu" class="hero-tabs">
+      {% for h in account.hero_set.all %}
+      <li>
+        <a href="{% url "diablo_hero_detail" h.pk %}" onclick="loadHero(this,{{ h.pk }}); return false;"
+           class="hero-tab {{ h.klass }}-{{ h.get_gender_display|lower }}{% if h == hero %}
+	        active{% endif %}{% if h.hardcore %} hardcore{% endif %}">
+          <span class="hero-portrait"></span>
+          <span class="level">{{ h.level }}</span>
+          <span class="name">{{ h.get_klass_display }}</span>
+      </a>
+      </li>
+      {% endfor %}
+      {% for e in account.empty_tabs %}
+      <li>
+      <span class="hero-tab"></span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div id="diablo_armory">
+    {% include "diablo/_hero.html" %}
+  </div>
+</div>
+{% endblock %}

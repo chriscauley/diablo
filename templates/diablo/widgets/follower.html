@@ -1,0 +1,43 @@
+<div class="follower-wrapper follower-{{ follower.slug }}">
+  <div class="follower-wrapper follower-{{ follower.slug }}">
+    <a href="/d3/en/follower/{{ follower.slug }}/" class="follower-header">
+      <div class="category ">{{ follower.get_slug_display }}</div>
+      <span class="level">Level 60</span>
+    </a>
+    <table class="skills">
+      <tbody>
+        {% for skill in follower.skills.all %}
+        {% if not skill  %}
+        <tr class="skill empty-skill empty-unlocked">
+          <td class="icon-cell" data-tooltip="Skill is available but not yet selecetd"></td>
+          <td class="name-cell"></td>
+        </tr>
+        {% else %}
+        <tr id="follower-{{ follower.slug }}-1-row" class="skill" onclick="Core.goTo('/d3/en/follower/{{ follower.slug }}/skill/loyalty')" data-tooltip="#follower-{{ follower.slug }}-1">
+          <td>
+            <span class="d3-icon d3-icon-skill d3-icon-skill-21 " style="background-image: url({{ skill.icon_url }}); width: 21px; height: 21px;">
+              <span class="frame"></span>
+            </span>
+          </td>
+          <td class="name-cell"><span class="name">{{ skill.name }}</span></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    <ul class="items">
+      {% for item in follower.items.all %}
+      <li>
+        <a href="/d3/en/item/amulet-1PQswc" class="slot slot-{{ item.slot }}" data-d3tooltip="item/CkYI_L3qpQkSBwgEFazFRGQd5eWp8B1m3ArxHTXne6gdRpPTiR2nR6cyHZ5ssxQiCwgBFWdCAwAYJiAkMAk4vANAAFAQYLwDGNiWpsQM">
+          <span class="d3-icon d3-icon-item d3-icon-item-small  d3-icon-item-{{ item.displayColor }}">
+            <span class="icon-item-gradient">
+              <span class="icon-item-inner icon-item-square" style="background-image: url({{ item.icon_url }});">
+              </span>
+            </span>
+          </span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

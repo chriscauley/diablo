@@ -1,0 +1,44 @@
+<div class="page-section skills">
+  <div class="section-header ">
+    <div class="category ">Skills</div>
+  </div>
+  <div class="section-body">
+    <a href="/d3/en/calculator/barbarian#ahUQSR!ZYd!YZZZbY" class="profile-link">
+      View in Skill Calculator
+      <span class="icon-frame icon-frame-text">
+        <span class="icon-16 icon-16-rarrow"></span>
+      </span>
+    </a>
+    <div class="skills-wrapper">
+      <ul class="active-skills clear-after">
+        {% for rune in hero.skillset.runes.all %}
+        <li>
+          <a href="/d3/en/class/barbarian/active/bash" data-tooltip="#active-skill-tooltip-0">
+            <span class="d3-icon d3-icon-skill d3-icon-skill-42 "
+                  style="background-image: url({{ rune.skill.icon_url }}); width: 42px; height: 42px;">
+              <span class="frame"></span>
+            </span>
+            <span class="skill-name">
+              {{ rune.skill.name }}
+              <span class="rune-name">{{ rune.name }}</span>
+            </span>
+          </a>
+          <span class="slot slot-primary"></span>
+        </li>
+        {% endfor %}
+      </ul>
+      <ul class="passive-skills clear-after">
+        {% for skill in hero.skillset.passive_skills.all %}
+        <li>
+          <a href="/d3/en/class/barbarian/passive/ruthless">
+            <span class="passive-icon">
+              <img src="{{ skill.icon_url }}" style="width:32px; height:32px" />
+            </span>
+            <span class="skill-name">{{ skill.name }}</span>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

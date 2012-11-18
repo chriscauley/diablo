@@ -1,0 +1,84 @@
+#diablo_armory .profile-followers {
+  margin: 30px; position: relative; overflow:hidden;
+  .follower-wrapper {
+    display:block; float:left; width:250px; height:350px; padding:0 18px; background:#19160d url(http://us.battle.net/d3/static/images/profile/hero/followers.jpg) no-repeat; margin-right:26px;
+    &.follower-templar { background-position:0 0 }
+    &.follower-scoundrel { background-position:-286px 0 }
+    &.follower-enchantress { background-position:-572px 0; margin-right:0 }
+    &.locked .category { color:#4e4536 }
+  }
+  .follower-wrapper .follower-header {height:76px; display:block;}
+  .follower-wrapper .category { font-weight:bold; font-size:24px; color:#ead8b9; text-transform:none; text-shadow:1px 1px 2px #000; padding-top:25px; letter-spacing:-0.05em }
+
+  .follower-wrapper .level { display:block; font-size:11px; text-transform:uppercase; text-shadow:1px 1px 2px #000; color: #A99877; }
+  .follower-wrapper a:hover .level { color: #fff; }
+  .items {
+    width:142px; height:186px; position:relative; float:right;
+    .slot { position:absolute; display:block; }
+    span.slot { cursor: help; }
+    .slot.empty-offhand { background:url("http://us.battle.net/d3/static/images/profile/hero/disabled-offhand-followers.gif") 0 0 no-repeat; }
+    .slot.empty-offhand .icon-item-default { display:block; opacity:0.3 }
+
+    .slot.empty-offhand .icon-item-inner { width:48px; height:96px; margin:1px; }
+
+    .slot-special,
+    .slot-neck { top:37px; width:42px; height:42px; }
+    .slot-special .sockets-align,
+    .slot-neck .sockets-align { width:42px; height:42px; }
+
+    .slot-special { left:34px }
+    .slot-special .slot-special-border {width:48px; height:48px; background:url("http://us.battle.net/d3/static/images/profile/hero/border-followerspecial.gif") 0 0 no-repeat; position:absolute; top:-3px; left:-3px;}
+    .slot-neck { left:82px }
+    .slot-special .icon-item-inner,
+    .slot-neck .icon-item-inner { width:38px; height:38px }
+
+    .slot-mainHand,
+    .slot-offHand { top:86px; height:98px; width:50px }
+    .slot-offHand .sockets-align,
+    .slot-mainHand .sockets-align {  height:98px; width:50px }
+    .slot-mainHand { left:-1px }
+    .slot-offHand { left:54px }
+    .slot-mainHand .icon-item-inner,
+    .slot-offHand .icon-item-inner { height:94px; width:46px; background-size:100% }
+
+    .slot-rightFinger,
+    .slot-leftFinger { left:109px; width:32px; height:32px }
+    .slot-rightFinger .sockets-align,
+    .slot-leftFinger .sockets-align {  width:31px; height:32px }
+
+    .slot-rightFinger { top:86px }
+    .slot-leftFinger { top:124px }
+    .slot-rightFinger .icon-item-inner,
+    .slot-leftFinger .icon-item-inner { width:28px; height:28px }
+
+    li { text-align:center }
+    .sockets-wrapper { width:100%; height:100%; display:block; position:absolute; top:0; left:0; opacity:0.8 }
+    a:hover .sockets-wrapper { opacity:1 }
+    .sockets-align { height: 88px; width: 66px; display:table-cell; vertical-align:middle }
+    .socket { display:inline-block; vertical-align:middle; width:28px; height:28px; background:url(http://us.battle.net/d3/static/images/profile/hero/follower-socket.png) 0 0 no-repeat; text-align:center; position:relative; left:1px; }
+    .socket .gem { margin:4px auto 0;  width:20px; height:20px }
+  }
+  .follower-wrapper .skills { float:left; width:106px; margin-top:34px; margin-left:1px }
+  .skill {
+    height:34px; width:106px;
+    .icon-cell { width:21px }
+    .icon-cell .d3-icon { float:left; margin-top:1px; display:block; box-shadow: 0 0 3px rgba(0,0,0,0.5); }
+    .name-cell { vertical-align:middle; color: #7B6D55; }
+    .name { font-size:11px; width:68px; padding-left:6px; display:block; float:left; line-height:1.4em }
+    &:hover { cursor:pointer }
+    &.empty-skill { cursor:default }
+    &.empty-skill:hover .icon-cell { cursor:help }
+    &.empty-unlocked .icon-cell { background:url(http://us.battle.net/d3/static/images/profile/hero/follower-skill-unlocked.jpg) no-repeat 0 50% }
+    &:hover .name { color:#FFF }
+  }
+
+  .follower-wrapper .adventure-stats { padding-top:37px; padding-left:6px }
+
+  .follower-wrapper .adventure-stats li { width:80px; float:left }
+  .follower-wrapper .adventure-stats .value { color:#b6aa94; font-weight:bold; font-size:14px; width:80px; display:block }
+  .follower-wrapper .adventure-stats .label { font-size:11px; width:70px; display:block; margin-top:0px; color:#7B6D55; line-height:12px; }
+  .follower-wrapper.locked .adventure-stats .value,
+  .follower-wrapper.locked .adventure-stats .label,
+  .follower-wrapper        .adventure-stats .empty-stat .value,
+  .follower-wrapper        .adventure-stats .empty-stat .label { color:#4e4536 }
+}

@@ -1,0 +1,9 @@
+[{
+  "model": "diablo.region",
+  "pk": 1,
+  "fields": {
+    "code": "us",
+    "name": "United States"
+  }
+}
+]

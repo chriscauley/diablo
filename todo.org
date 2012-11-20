@@ -4,3 +4,4 @@
 * tool tips
 * last updated and border thingy at bottom of page
 * add compress template tag to avoid dependency on compress
+* follower broke for some reason

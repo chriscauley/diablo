@@ -4,6 +4,8 @@ from .account import Account
 from .abstract import _Meta, APIModel, Model
 from diablo import var
 
+import re
+
 class Hero(APIModel):
     account = models.ForeignKey(Account)
     name = models.CharField(max_length=64)
@@ -16,6 +18,7 @@ class Hero(APIModel):
 
     elite_kills = models.IntegerField(default=0)
     items = models.ManyToManyField("diablo.Item",null=True,blank=True)
+    at_title = lambda self: "%s %s"%(self.level, self.get_klass_display())
 
     __unicode__ = lambda self: "%s by %s"%(self.name,self.account)
     api_url = property(lambda self: '%s/hero/%s'%(self.account.api_url,self.id))
@@ -31,6 +34,7 @@ class Hero(APIModel):
 
     def save(self,*args,**kwargs):
         self.klass = getattr(self,'class',self.klass) # taking care of klass vs class problem
+        self.elite_kills = self.toon['kills']['elites']
         return super(Hero,self).save(*args,**kwargs)
 
     def update_skills(self):
@@ -131,6 +135,11 @@ class SkillModel(Model):
     name = models.CharField(max_length=64,null=True,blank=True)
     description = models.TextField(null=True,blank=True)
     simpleDescription = models.TextField(null=True,blank=True)
+    @property
+    def description_html(self):
+        html = re.sub(r'([\d\%]+)', r'<span class="d3-color-green">\1</span>', self.description)
+        html = html.replace('Cost:', r'<span class=d3-color-gold">Cost:</span>')
+        return html
     __unicode__ = lambda self: self.name or '(None)'
     class Meta:
         abstract = True
@@ -139,8 +148,8 @@ class Skill(SkillModel):
     icon = models.CharField(max_length=64)
     active = models.BooleanField(default=True)
     tooltipUrl = models.CharField(max_length=64,null=True,blank=True)
-    tooltip_url = lambda self: "http://us.battle.net/d3/en/%s"%self.tooltipUrl
-    icon_url = lambda self: "http://media.blizzard.com/d3/icons/skills/42/%s.png"%self.icon
+    tooltip_url = property(lambda self: "http://us.battle.net/d3/en/tooltip/%s"%self.tooltipUrl)
+    icon_url = property(lambda self: "http://media.blizzard.com/d3/icons/skills/42/%s.png"%self.icon)
     class Meta(_Meta):
         unique_together = ('slug',)
 
@@ -148,7 +157,7 @@ class Rune(SkillModel):
     skill = models.ForeignKey(Skill)
     type = models.CharField(max_length=2,choices=var.TYPE_CHOICES,null=True,blank=True)
     tooltipParams = models.TextField(null=True,blank=True)
-    tooltip_url = lambda self: "http://us.battle.net/d3/en/%s"%self.tooltipParams
+    tooltip_url = property(lambda self: "http://us.battle.net/d3/en/%s"%self.tooltipParams)
     class Meta(_Meta):
         unique_together = ('slug','skill')
 

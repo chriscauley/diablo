@@ -1,0 +1,22 @@
+<div class="d3-tooltip d3-tooltip-skill">
+  <div class="tooltip-head">
+    <h3 class="">{{ rune.skill.name }}</h3>
+  </div>
+  <div class="tooltip-body ">
+    <span class="d3-icon d3-icon-skill d3-icon-skill-64 " style="background-image: url('http://media.blizzard.com/d3/icons/skills/64/{{ rune.skill.icon }}.png'); width: 64px; height: 64px;">
+      <span class="frame"></span>
+    </span>
+    <div class="description">
+      {{ rune.skill.description_html|safe|linebreaks }}
+    </div>
+  </div>
+  {% if rune.description %}
+  <div class="tooltip-extension rune-extension">
+    <span class="d3-icon d3-icon-rune d3-icon-rune-large">
+      <span class="rune-{{ rune.type }}"></span>
+    </span>
+    <h3 class="category ">{{ rune.name }}</h3>
+    {{ rune.description_html|safe|linebreaks }}
+  </div>
+  {% endif %}
+</div>

@@ -12,16 +12,26 @@ class Region(Model):
         pass
 
 class Account(APIModel):
+    account_type = 'diablo'
     __unicode__ = lambda self: "%s#%s"%(self.name,self.code)
     name = models.CharField(max_length=64)
     user = models.ForeignKey(User,null=True,blank=True,related_name='diablo_accounts')
     region = models.ForeignKey(Region)
     code = models.IntegerField("Battle Tag")
+    created_on = models.DateTimeField(auto_now_add=True)
 
     lastHeroPlayed = models.IntegerField(default=0)
     lastUpdated = models.IntegerField(default=0)
 
     api_url = property(lambda self: 'http://%s.battle.net/api/d3/profile/%s-%s/'%(self.region.code,self.name,self.code))
+    max_level_heroes = lambda self: self.hero_set.filter(level=60)
+    get_absolute_url = lambda self: '/diablo/account/%s'%self.id
+    def progression_percent(self,hardcore):
+        from .progress import Act
+        return Act.objects.filter(progression__hardcore=hardcore,progression__account=self)
+    normal_progression_percent = lambda self: self.progression_percent(False).count()/16
+    hardcore_progression_percent = lambda self: self.progression_percent(True).count()/16
+
     def empty_tabs(self):
         if self.hero_set.count() > 11:
             return

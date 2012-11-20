@@ -5,6 +5,11 @@
   <h1>Add Diablo Account</h1>
   <form method="POST">
     {% csrf_token %}
+    {% if account_404 %}
+    <ul class="error">
+      <li>No character matching that name and battle tag could be found. Please recheck and try again</li>
+    </ul>
+    {% endif %}
     <table>
       {{ form.as_table }}
       <tr>

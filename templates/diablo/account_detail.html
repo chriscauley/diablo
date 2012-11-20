@@ -11,8 +11,8 @@
 <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/armory.less" />
 <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/progress.less" />
 <link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/follower.less" />
+<link rel="stylesheet" type="text/less" href="{{ STATIC_URL }}diablo/css/tooltip.less" />
 {% endcompress %}
-<script src="http://us.battle.net/d3/static/js/tooltips.js"></script>
 <script type="text/javascript">
 function loadHero(that,pk) {
   $(".hero-tab").removeClass("active").removeClass("loading");
@@ -53,11 +53,18 @@ function showBonuses(that,pk) {
       <li>
         <a href="{% url "diablo_hero_detail" h.pk %}" onclick="loadHero(this,{{ h.pk }}); return false;"
            class="hero-tab {{ h.klass }}-{{ h.get_gender_display|lower }}{% if h == hero %}
-	        active{% endif %}{% if h.hardcore %} hardcore{% endif %}">
+	        active{% endif %}{% if h.hardcore %} hardcore{% endif %}"
+           title="notajax:#hero-tab-tooltip-{{ forloop.counter }}">
           <span class="hero-portrait"></span>
           <span class="level">{{ h.level }}</span>
           <span class="name">{{ h.get_klass_display }}</span>
-      </a>
+        </a>
+        <div id="hero-tab-tooltip-{{ forloop.counter }}" style="display:none">
+          <div class="hero-tab-tooltip profile-tooltip d3-tooltip">
+            <div class="subheader"><strong>{{ h.level }}</strong> {{ h.get_klass_display }}</div>
+            {% if h.hardcore %}Hardcore{% endif %}
+            </div>
+          </div>
       </li>
       {% endfor %}
       {% for e in account.empty_tabs %}

@@ -1,0 +1,6 @@
+* duplicate gems
+** either add a slot number or make it a related field... probably slot number and then order by
+* calculate additional attributes on primary stat
+* tool tips
+* last updated and border thingy at bottom of page
+* add compress template tag to avoid dependency on compress

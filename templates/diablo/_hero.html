@@ -1,3 +1,4 @@
+{% load url from future %}
 <div id="hero-{{ hero.pk }}">
   <div class="hero_profile" style='background:url("http://us.battle.net/d3/static/images/profile/hero/paperdoll/{{ hero.klass }}-{{ hero.get_gender_display|lower }}.jpg")'>
     <div class="gear-bonuses">
@@ -17,7 +18,8 @@
     <ul class="gear-labels">
       {% for item in hero.items.all %}
       <li class="gear-label {{ item.slot }}">
-        <a href="" class="label-link color-{{ item.displayColor }}">
+        <a href="#" title="ajax:{% url "diablo_tooltip" "item" item.pk %}"
+           class="label-link color-{{ item.displayColor }}">
           <span class="item-name">{{ item.name }}</span>
           {% for attribute in item.full_attributes %}
           <div class="bonus-value long-bonus bonus-type-{{ attribute.type_id }}">{{ attribute }}</div>
@@ -34,8 +36,7 @@
     <ul class="gear_slots">
       {% for item in hero.items.all %}
       <li class="item {{ item.slot }} {{ item.displayColor }}">
-        <a class="slot-link" href="http://us.battle.net/d3/en/{{ item.tooltipParams }}"
-	   data-d3tooltip="{{ item.tooltipParams }}" style="cursor:pointer;">
+        <a class="slot-link" title="ajax:{% url "diablo_tooltip" "item" item.pk %}" href="#" style="cursor:pointer;">
           <span class="extra"></span>
           <img src="{{ item.icon_url }}" class="icon" />
           <span class="socket-wrapper">
@@ -65,3 +66,4 @@
 <script type="text/javascript">
 $("#hero-{{ hero.pk }} .bonus-stat").eq(0).click();
 </script>
+<script src="{{ STATIC_URL }}diablo/js/ajaxtooltip.js" type="text/javascript"></script>

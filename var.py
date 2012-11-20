@@ -17,7 +17,7 @@ KLASS_PRIMARIES = {
 KLASS_RESOURCES = {
     'barbarian': {'name': "Fury", 'slug': 'fury', 'primary': 100, 'secondary': '' },
     'witch-doctor': {'name': "Mana", 'slug': 'mana', 'primary': 100, 'secondary': '' },
-    'demon-hunter': {'name': "Hatred/ Discipline", 'slug': 'hatred-discipline', 'primary': 100, 'secondary': '' },
+    'demon-hunter': {'name': "Hatred/ Discipline", 'slug': 'hatred-discipline', 'primary': 100, 'secondary': 35 },
     'wizard': {'name': "Arcane Power", 'slug': 'arcane-power', 'primary': 100, 'secondary': '' },
     'monk': {'name': "Spirit", 'slug': 'spirit', 'primary': 150, 'secondary': '' },
 }

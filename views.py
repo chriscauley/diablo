@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.template.response import TemplateResponse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
-from .models import Account, Hero
+from .models.abstract import APINotFound
+from .models import Account, Hero, ToolTip
 from .forms import AccountForm
 
 def account_detail(request,pk):
@@ -25,12 +26,17 @@ def hero_detail(request,hero_pk):
 
 def add_account(request):
     form = AccountForm(request.POST or None)
-    if request.POST and form.is_valid():
-        account = form.save()
-        return HttpResponseRedirect(reverse("diablo_account_detail",args=(account.pk,)))
     values = {
         'form': form,
         }
+    if request.POST and form.is_valid():
+        try:
+            account = form.save_or_none()
+            if account:
+                return HttpResponseRedirect(reverse("diablo_account_detail",args=(account.pk,)))
+        except APINotFound:
+            pass
+        values['account_404'] = True
     return TemplateResponse(request,"diablo/add.html",values)
 
 def edit_account(request,pk):
@@ -41,3 +47,8 @@ def edit_account(request,pk):
         form.save()
         return HttpResponseRedirect(reverse("diablo_account_detail",args=(account.pk,)))
     return TemplateResponse(request,"diablo/edit.html",values)
+
+def tooltip(request,model,model_pk):
+    if model == 'rune':
+        return HttpResponse(ToolTip.objects.get_rune_html(model_pk=model_pk))
+    return HttpResponse(ToolTip.objects.get_lazy_html(model=model,model_pk=model_pk))

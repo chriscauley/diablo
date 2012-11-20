@@ -1,3 +1,4 @@
+{% load url from future %}
 <div class="page-section skills">
   <div class="section-header ">
     <div class="category ">Skills</div>
@@ -15,8 +16,8 @@
       <ul class="active-skills clear-after">
         {% for rune in hero.skillset.runes.all %}
         <li>
-          <a href="/d3/en/class/barbarian/active/bash" data-tooltip="#active-skill-tooltip-0">
-            <span class="d3-icon d3-icon-skill d3-icon-skill-42 "
+          <a href="/d3/en/class/barbarian/active/bash" title="ajax:{% url "diablo_tooltip" "rune" rune.pk %}">
+            <span class="d3-icon d3-icon-skill d3-icon-skill-42"
                   style="background-image: url({{ rune.skill.icon_url }}); width: 42px; height: 42px;">
               <span class="frame"></span>
             </span>
@@ -25,14 +26,13 @@
               <span class="rune-name">{{ rune.name }}</span>
             </span>
           </a>
-          <span class="slot slot-primary"></span>
         </li>
         {% endfor %}
       </ul>
       <ul class="passive-skills clear-after">
         {% for skill in hero.skillset.passive_skills.all %}
         <li>
-          <a href="/d3/en/class/barbarian/passive/ruthless">
+          <a href="/d3/en/class/barbarian/passive/ruthless" title="ajax:{% url "diablo_tooltip" "skill" skill.pk %}">
             <span class="passive-icon">
               <img src="{{ skill.icon_url }}" style="width:32px; height:32px" />
             </span>

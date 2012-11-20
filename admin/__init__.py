@@ -20,6 +20,9 @@ class AccountAdmin(admin.ModelAdmin):
 class ItemAdmin(admin.ModelAdmin):
     readonly_fields = ('attributes','gems')
 
+class ToolTipAdmin(admin.ModelAdmin):
+    list_filter = ("model",)
+
 admin.site.register(Region)
 admin.site.register(Account,AccountAdmin)
 admin.site.register(Hero,HeroAdmin)
@@ -30,3 +33,4 @@ admin.site.register(Rune)
 admin.site.register(Artisan)
 admin.site.register(AttributeType)
 admin.site.register(Follower,FollowerAdmin)
+admin.site.register(ToolTip,ToolTipAdmin)

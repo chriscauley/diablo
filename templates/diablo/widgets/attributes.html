@@ -3,7 +3,7 @@
     <div class="header category">attributes</div>
     <ul class="attrs">
       {% for name, value in hero.stats.attributes %}
-      <li class="tip">
+      <li class="tip" title="notajax:#tooltip-{{ name }}-hero">
 	<span class="label">{{ name }}</span>
 	<span class="value">{{ value }}</span>
         <div style="clear: both;"></div>
@@ -11,7 +11,7 @@
       {% endfor %}
     </ul>
     <ul class="resources">
-      <li class="resource tip" data-tooltip="#tooltip-maxPrimaryResource-hero">
+      <li class="resource tip" title="notajax:#tooltip-maxPrimaryResource-hero">
         <span class="resource-icon resource-{{ hero.get_resources.slug }}">
           <span class="value">{{ hero.get_resources.html|safe }}</span>
         </span>
@@ -19,7 +19,7 @@
           <span class="label">{{ hero.get_resources.name }}</span>
         </span>
       </li>
-      <li class="resource tip" data-tooltip="#tooltip-life-hero">
+      <li class="resource tip" title="notajax:#tooltip-life-hero">
         <span class="resource-icon resource-life">
           <span class="value">{{ hero.display_vitality }}</span>
         </span>
@@ -27,4 +27,9 @@
       </li>
     </ul>
   </div>
+  {% for name, value in hero.stats.attributes %}
+  {% include "diablo/widgets/attribute_tooltip.html" %}
+  {% endfor %}
+  {% include "diablo/widgets/attribute_tooltip.html" with name="life" value=hero.stats.life %}
+  {% include "diablo/widgets/attribute_tooltip.html" with name="maxPrimaryResource" resources=hero.get_resources klass=hero.klass %}
 </div>

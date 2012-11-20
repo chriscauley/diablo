@@ -51,6 +51,9 @@ class Model(models.Model):
 class _Meta:
     app_label = 'diablo'
 
+class APINotFound(Exception):
+    pass
+
 class APIModel(Model):
     """
     Model to house the abstract functions for dealing with battlenet.
@@ -60,11 +63,22 @@ class APIModel(Model):
     """
     def _get_toon(self):
         if not hasattr(self,'_toon'):
-            try:
-                r = requests.get(self.api_url)
-                self._toon = loads(r.text)
-            except ImportError:
-                pass
+            tries = 0
+            success = False
+            while tries <= 3:
+                tries += 1
+                try:
+                    r = requests.get(self.api_url)
+                    self._toon = loads(r.text)
+                    success = True
+                    break
+                except:
+                    pass
+            if not success:
+                mail_admins("Session not found",traceback.format_exc())
+                return False
+            if self._toon.get('code','') == 'OOPS':
+                raise APINotFound("No data exists at:%s"%self.api_url)
         return self._toon
     toon = property(_get_toon)
 

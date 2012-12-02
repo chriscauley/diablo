@@ -42,10 +42,14 @@ class Account(APIModel):
 
     @classmethod
     def create(clss,name='',region='',code=0):
-        r,new = Region.objects.get_or_create(code=region,defaults={'name':code})
+        r,new = Region.objects.get_or_create(code=region,defaults={'name':region})
         obj,new = clss.objects.get_or_create(name=name,region=r,code=code)
         obj.save()
         return obj
+    @classmethod
+    def verify(clss,name='',region=None,code=0):
+        #this will raise APINotFound if there is no such hero
+        clss(name=name,region=region,code=code).toon
 
     updates = ['basics','artisans','progressions','heroes']
 

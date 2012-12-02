@@ -1,7 +1,8 @@
+from django.core.mail import mail_admins
 from django.db import models
 from django.http import Http404
 
-import requests
+import requests, traceback
 from simplejson import loads
 
 class ModelManager(models.Manager):

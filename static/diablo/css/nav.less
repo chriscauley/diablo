@@ -1,41 +1,34 @@
-.hero-tabs a { color: white; }
-
-/* copied directly from blizzard. Please don't sue, we don't have any money */
-/* hero tabs */
-.hero-tabs { height:115px; overflow:hidden }
-.hero-tabs li { width:97px; height:124px; float:left; display:block }
-.hero-tabs .hero-tab { display:block; width:83px; height:117px; padding:7px 7px 0; background:url(http://us.battle.net/d3/static/images/profile/hero/hero-nav-frames.png) 0 -124px no-repeat }
-.hero-tabs .hero-tab.loading:after { content:" "; display:block; width:83px; height:66px; background:rgba(0, 0, 0, .2) url(http://us.battle.net/d3/static/images/loaders/default.gif) 50% 50% no-repeat; position:relative; top:-67px; left:0 }
-.hero-tabs .hero-tab.empty-hero { background-position: 2px -378px }
-.ie6 .hero-tab { background-image:url(http://us.battle.net/d3/static/images/profile/hero/hero-nav-frames.gif) }
-.hero-tabs a:hover { background-position: 0 -248px }
-.hero-tabs a:hover .hero-portrait { opacity:0.8 }
-.hero-tabs a.active,
-.hero-tabs a.active:hover { background-position:0 0 }
-.hero-tabs a.active .hero-portrait,
-.hero-tabs a.hardcore-active .hero-portrait { opacity:1 }
-.hero-tabs a.hardcore { background-position:-103px -124px }
-.hero-tabs a.hardcore:hover { background-position:-103px -248px }
-.hero-tabs a.hardcore-active,
-.hero-tabs a.hardcore-active:hover { background-position:-103px 0 }
-.hero-tabs .hero-portrait { display:block; width:83px; height:1px; padding-top:65px; overflow:hidden; background:url(http://us.battle.net/d3/static/images/profile/hero/hero-nav-portraits.jpg) no-repeat; opacity:0.4; }
-.hero-tabs .barbarian-male .hero-portrait { background-position:0 0 }
-.hero-tabs .barbarian-female .hero-portrait { background-position:-83px 0 }
-.hero-tabs .demon-hunter-male .hero-portrait { background-position:0 -66px }
-.hero-tabs .demon-hunter-female .hero-portrait { background-position:-83px -66px }
-.hero-tabs .monk-male .hero-portrait { background-position:0 -132px }
-.hero-tabs .monk-female .hero-portrait { background-position:-83px -132px }
-.hero-tabs .witch-doctor-male .hero-portrait { background-position:0 -198px }
-.hero-tabs .witch-doctor-female .hero-portrait { background-position:-83px -198px }
-.hero-tabs .wizard-male .hero-portrait { background-position:0 -264px }
-.hero-tabs .wizard-female .hero-portrait { background-position:-83px -264px }
-.hero-tabs .level { display:block; padding-left:5px; width:16px; height:25px; line-height:25px; float:left; color:#a99877; font-size:12px; }
-.hero-tabs .name { display:block; float:left; width:60px; height:25px; line-height:25px; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.hero-tabs .active .name,
-.hero-tabs .hardcore-active .name { color:#F3E6D0; font-weight:bold }
-.zh-tw .hero-tabs .active .name,
-.zh-tw .hero-tabs .hardcore-active .name { font-weight:normal }
-.hero-tabs .hardcore .level,
-.hero-tabs .hardcore-active .level { color:#e60101 }
-.hero-tabs a:hover .level,
-.hero-tabs a.hardcore:hover .level { color: #FFF}
+.hero-tabs {
+  height:115px; overflow:hidden;
+  li { width:97px; height:124px; float:left; display:block }
+}
+.hero-tab {
+  color: white; display:inline-block; width:83px; height:117px; padding:7px 7px 0; background:url(http://us.battle.net/d3/static/images/profile/hero/hero-nav-frames.png) 0 -124px no-repeat;
+  &.loading:after { content:" "; display:block; width:83px; height:66px; background:rgba(0, 0, 0, .2) url(http://us.battle.net/d3/static/images/loaders/default.gif) 50% 50% no-repeat; position:relative; top:-67px; left:0 }
+  &.empty-hero { background-position: 2px -378px }
+  &:hover { background-position: 0 -248px }
+  &:hover .hero-portrait { opacity:0.8 }
+  &.active,
+  &.active:hover { background-position:0 0 }
+  &.active .hero-portrait,
+  &.hardcore-active .hero-portrait { opacity:1 }
+  &.hardcore { background-position:-103px -124px }
+  &.hardcore:hover { background-position:-103px -248px }
+  &.hardcore-active,.hardcore-active:hover { background-position:-103px 0 }
+  .hero-portrait { display:block; width:83px; height:1px; padding-top:65px; overflow:hidden; background:url(http://us.battle.net/d3/static/images/profile/hero/hero-nav-portraits.jpg) no-repeat; opacity:0.4; }
+  &.barbarian-male .hero-portrait { background-position:0 0 }
+  &.barbarian-female .hero-portrait { background-position:-83px 0 }
+  &.demon-hunter-male .hero-portrait { background-position:0 -66px }
+  &.demon-hunter-female .hero-portrait { background-position:-83px -66px }
+  &.monk-male .hero-portrait { background-position:0 -132px }
+  &.monk-female .hero-portrait { background-position:-83px -132px }
+  &.witch-doctor-male .hero-portrait { background-position:0 -198px }
+  &.witch-doctor-female .hero-portrait { background-position:-83px -198px }
+  &.wizard-male .hero-portrait { background-position:0 -264px }
+  &.wizard-female .hero-portrait { background-position:-83px -264px }
+  &.active .name { color:#F3E6D0; font-weight:bold }
+  &.hardcore .level { color:#e60101 }
+  &:hover .level { color: #FFF}
+  .level { display:block; padding-left:5px; width:16px; height:25px; line-height:25px; float:left; color:#a99877; font-size:12px; }
+  .name { display:block; float:left; width:60px; height:25px; line-height:25px; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+}
